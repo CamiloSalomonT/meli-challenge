@@ -4,7 +4,7 @@
 ## Procesos, hilos y corrutinas
 
 ### · Un caso en que usarías procesos para resolver un problema y por qué?
-Para solucionar problemas de gran intesidad de procesamiento como multiplicaciones de matrices (en caso de no tener GPU), ordenamientos.
+Para solucionar problemas de gran intesidad de procesamiento como multiplicaciones de matrices (en caso de no tener GPU), ordenamientos, solución de problemas por métodos numericos.
 
 ### · Un caso en que usarías threads para resolver un problema y por qué?
 Para funcionamientos en paralelo de diferentes componentes de una aplicación, es decir, ejecutar diferentes comportamientos en cada thread.
