@@ -6,3 +6,4 @@ ENV FLASK_APP=run.py
 COPY . /app/
 WORKDIR /app
 CMD flask run --host=0.0.0.0 --port=5000
+# CMD python test.py
