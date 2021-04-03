@@ -20,7 +20,7 @@ Solo necesitas es ejecutar la siguiente línea en esta carpeta y voilà!
 
 ## Configuración
 La configuración se encuentra en el [archivo de configuracion](config/config.ini), aquí puedes cambiar el nombre del archivo a ser leído, su codificación y parametrizar algunos otros aspectos del proyecto.
-_Si deseas cambiar contraseñas, puertos u otra información relevante de la aplicación, debes cerciorarte de hacer dichos cambios en el archivo del [compose](docker-compose.ini)_
+_Si deseas cambiar contraseñas, puertos u otra información relevante de la aplicación, debes cerciorarte de hacer dichos cambios en el archivo del [compose](docker-compose.yml)_
 
 ## Uso
 Por defectoAccediendo a [localhost:5051](http://localhost:5051) accederás al swagger del proyecto que te permitirá ejecutar (por POST) el llamado al ejercicio propuesto.
