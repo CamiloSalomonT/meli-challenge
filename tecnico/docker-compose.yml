@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  flask:
+    build: flask
+    restart: always
+    volumes:
+      - ./config:/app/config
+      - ./sample_data:/sample_data/
+    ports:
+      - 5051:5000
+    depends_on:
+      - cache
+      - db
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=passport
+  cache:
+    image: "redis:alpine"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 18080:8080
+    depends_on:
+      - db

@@ -1,0 +1,7 @@
+aiohttp
+requests
+flask
+flask_restx
+redis
+sqlalchemy
+psycopg2
