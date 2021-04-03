@@ -28,3 +28,6 @@ Por defecto, accediendo al puerto [5051](http://localhost:5051) de tu máquina l
 
 
 Además de esto, tendrás acceso a [Adminer](http://localhost:18080) en el que utilizando la siguiente configuración te podrás conectar para navegar las tablas.
+![](img/adminer.png)
+
+_La contraseña por defecto es "passport" _
