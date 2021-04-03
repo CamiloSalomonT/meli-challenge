@@ -1,4 +1,5 @@
-# Desafío Teórico
+![](https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png) 
+# MercadoLibre Challenge Teórico
 
 ## Procesos, hilos y corrutinas
 
