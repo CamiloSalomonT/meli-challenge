@@ -1,19 +1,33 @@
-import time
-import contextlib
+import unittest
 
-import app.control.pipeline as Pipeline
+import app.common.configuration as config
 
+from app.data.interpreter_manager import InterpreterManager
 
-@contextlib.contextmanager
-def time_consumption(test):
-    t0 = time.time()
-    yield
-    print("Time consumption for {}: {:.3f}s".format(test, time.time() - t0))
+from app.data.interpreter.csv_interpreter import CsvInterpreter
+from app.data.interpreter.json_interpreter import JsonInterpreter
 
 
-# with time_consumption("mini"):
-#     Pipeline.call_pipeline("sample_data/tech_sample.csv")
+class TestInterpreter(unittest.TestCase):
+
+    scope = "Testing"
+    manager = InterpreterManager()
+
+    def test_interpreter_csv(self):
+        filepath = config.asString(self.scope, "filepath_csv")
+        clazz = interpreter = self.manager.get_interpreter(filepath).__class__
+        self.assertEqual(clazz, CsvInterpreter)
+
+    def test_interpreter_json(self):
+        filepath = config.asString(self.scope, "filepath_json")
+        clazz = interpreter = self.manager.get_interpreter(filepath).__class__
+        self.assertEqual(clazz, JsonInterpreter)
+
+    def test_interpreter_no_format(self):
+        filepath = config.asString(self.scope, "filepath_garbage")
+        with self.assertRaises(Exception):
+            clazz = interpreter = self.manager.get_interpreter(filepath).__class__
 
 
-with time_consumption("sample"):
-    Pipeline.call_pipeline("/sample_data/technical_challenge_data.csv")
+if __name__ == "__main__":
+    unittest.main()
