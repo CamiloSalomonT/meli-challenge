@@ -4,13 +4,13 @@
 ## Procesos, hilos y corrutinas
 
 ### · Un caso en que usarías procesos para resolver un problema y por qué?
-Para solucionar problemas de gran intesidad de procesamiento como multiplicaciones de matrices (en caso de no tener GPU), ordenamientos, solución de problemas por métodos numericos.
+Para solucionar problemas de gran intesidad de procesamiento como multiplicaciones de matrices (en caso de no tener GPU), ordenamientos, solución de problemas por métodos numericos; esto debido a que utilizando múltiples procesos podré utilizar todo el procesador, lo que me permitirá terminar la tarea más rápido.
 
 ### · Un caso en que usarías threads para resolver un problema y por qué?
-Para funcionamientos en paralelo de diferentes componentes de una aplicación, es decir, ejecutar diferentes comportamientos en cada thread.
+Para funcionamientos en paralelo de diferentes componentes de una aplicación, es decir, ejecutar diferentes comportamientos en cada thread. Esto porque aunque ocuparía el mismo proceso, podría obtener ventaja de orquestar, por ejemplo: UI, operaciones I/O tanto en disco, como en network y operaciones de negocio en la misma aplicación, sin crear bloqueos entre ellos.
 
 ### · Un caso en que usarías corrutinas para resolver un problema y por qué?
-Cualquier problema que sea de mediana y gran escala, que sea extenuante en operaciones de I/O y no de procesamiento. Llamar páginas web, llamados masivos  aun API, escribir en una base de datos.
+Cualquier problema que sea de mediana y gran escala, que sea repetitivo y concurrente en operaciones de I/O. Llamar páginas web, llamados masivos aun API, escribir en una base de datos. Porque mucho del tiempo que toma realizar estos llamados, se está esperando la respuesta y esto no permite aprovechar al 100% el thread en el que estamos; utilizando las corrutinas aprovechamos los tiempos muertos al interior del thread.
 
 
 ## Optimización de recursos del sistema operativo
