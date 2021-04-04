@@ -4,7 +4,7 @@
 ## Procesos, hilos y corrutinas
 
 ### · Un caso en que usarías procesos para resolver un problema y por qué?
-Para solucionar problemas de gran intesidad de procesamiento como multiplicaciones de matrices (en caso de no tener GPU), ordenamientos, solución de problemas por métodos numericos; esto debido a que utilizando múltiples procesos podré utilizar todo el procesador, lo que me permitirá terminar la tarea más rápido.
+Para solucionar problemas de gran intesidad de procesamiento como multiplicaciones de matrices (en caso de no tener GPU), ordenamientos masivos de diferentes estructuras, solución de problemas por métodos numericos; esto debido a que utilizando múltiples procesos podré utilizar todo el procesador, lo que me permitirá terminar las tareas más rápido. Cabe aclarar, que todos estos procesamientos se realizarián bajo un paradigma similar a map-reduce
 
 ### · Un caso en que usarías threads para resolver un problema y por qué?
 Para funcionamientos en paralelo de diferentes componentes de una aplicación, es decir, ejecutar diferentes comportamientos en cada thread. Esto porque aunque ocuparía el mismo proceso, podría obtener ventaja de orquestar, por ejemplo: UI, operaciones I/O tanto en disco, como en network y operaciones de negocio en la misma aplicación, sin crear bloqueos entre ellos.
@@ -21,4 +21,4 @@ Cualquier problema que sea de mediana y gran escala, que sea repetitivo y concur
 Realizaría una aplicación multi-task que me permitiera realizar las solicitudes de forma asíncrona (Como lo hice en el desafío técnico)
 
 ##### Respuesta Larga:
-Primero experimentaría para ver que tantas request puedo en cortos periodos de tiempo hacer sin ser castigado (Esto debido a que los WAF protegen contra ataques DoS). De forma paralela, haría la investigación del peso promedio de las solicitudes, para revisar qué tanto podría meter en la memoria del computador. Con estos dos números podría calcular el número optimo de requests en paralelo que podría hacer al API, definiría lotes de ese tamaño para realizar las ejecuciones asíncronas al API en corrutinas.
+Primero experimentaría para ver que tantas request puedo realizar en cortos periodos de tiempo hacer sin ser castigado (Esto debido a que los WAF protegen contra ataques DoS). De forma paralela, haría la investigación del peso promedio de las solicitudes, para revisar qué tanto podría meter en la memoria del computador. Con estos dos números podría calcular el número optimo de requests en paralelo que podría hacer al API, definiría lotes de ese tamaño para realizar las ejecuciones asíncronas al API en corrutinas.
