@@ -12,8 +12,9 @@ class InterpreterManager:
 
     def get_interpreter_by_filepath(self, filepath) -> DataInterpreter:
         with open(filepath, "r") as f:
-            f.readline()
-            sample = f.readline()
+            sample  = f.readline()
+            sample2 = f.readline()
+            sample  = sample2 if sample2 else sample
             return self.get_interpreter_by_sample(sample)
 
     def get_interpreter_by_sample(self, sample) -> DataInterpreter:
