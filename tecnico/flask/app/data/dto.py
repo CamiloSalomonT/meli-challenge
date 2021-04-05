@@ -1,11 +1,12 @@
-from typing import Optional, DateTime
+from typing import Optional
+from datetime import datetime
 from app.data.database.dbmodels import ArticleModel
 
 
 class Article:
 
     price:Optional[float] = None
-    start_time:Optional[DateTime] = None
+    start_time:Optional[datetime] = None
     category:Optional[str] = None
     currency:Optional[str] = None
     seller_nickname:Optional[str] = None

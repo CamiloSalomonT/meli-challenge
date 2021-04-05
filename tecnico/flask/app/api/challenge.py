@@ -69,7 +69,9 @@ class Challenge(Resource):
                 return {"message": "Pipeline in execution!"}
             else:
                 filename = uuid.uuid4()
-                filepath = f"../sample_data/tmp/{filename}"
+                chunk_size = conf.asInteger("IO", "chunk_size")
+                uploads_path = conf.asString("IO", "uploads_path")
+                filepath = uploads_path + str(filename)
                 with open(filepath, "w") as f:
                     chunk_size = 128
                     chunks = Reader.read_lines(request.stream, chunk_size)
@@ -82,7 +84,6 @@ class Challenge(Resource):
                         else:
                             for line in chunk:
                                 f.write(line + "\n")
-            print("Se va a llamar la ejecucion sobre el archivo")
             self.ch_th = threading.Thread(target=Pipeline.call_file_pipeline, args=[filepath])
             self.ch_th.start()
             return {"message": "Launching the pipeline..."}

@@ -2,7 +2,7 @@ import app.common.configuration as conf
 from itertools import islice
 
 
-SCOPE = "Reader"
+SCOPE = "IO"
 CONFIG_CHUNK_SIZE = conf.asInteger(SCOPE, "chunk_size")
 CONFIG_ENCONDING = conf.asString(SCOPE, "encoding")
 
