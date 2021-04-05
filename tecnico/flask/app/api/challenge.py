@@ -35,9 +35,9 @@ class Challenge(Resource):
 
     ch_th = None
     da_th = None
-    reader_scope = "Reader"
-    datapath = conf.asString(reader_scope, "filepath")
-    enconding = conf.asString(reader_scope, "encoding")
+    io_scope = "IO"
+    datapath = conf.asString(io_scope, "filepath")
+    enconding = conf.asString(io_scope, "encoding")
 
     def get(self):
         """Este método te dirá si se está ejecutando algun pipeline"""
