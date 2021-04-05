@@ -24,7 +24,7 @@ La configuración se encuentra en el [archivo de configuracion](config/config.in
 _Si deseas cambiar contraseñas, puertos u otra información relevante de la aplicación, debes cerciorarte de hacer dichos cambios en el archivo del [compose](docker-compose.yml)_
 
 ## Uso
-Por defecto, accediendo al puerto [5051](http://localhost:5051) de tu máquina local, accederás al swagger del proyecto que te permitirá ejecutar (por POST) el llamado al ejercicio propuesto. La solicitud GET te mostrará si se está ejecutándo un procesamiento tras bambalinas.
+Por defecto, accediendo al puerto [5051](http://localhost:5051) de tu máquina local, accederás al swagger del proyecto que te permitirá ejecutar por POST el llamado al ejercicio propuesto en un archivo que se encuentre en la carpeta [sample_data](sample_data) o por PUT si deseas cargar tu propio archivo que cumpla con las definiciones del [archivo de configuracion](config/config.ini). La solicitud GET te mostrará si se está ejecutándo un procesamiento tras bambalinas.
 
 
 Además de esto, tendrás acceso a [Adminer](http://localhost:18080) en el que utilizando la siguiente configuración te podrás conectar para navegar las tablas.
