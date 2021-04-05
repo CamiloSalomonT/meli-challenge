@@ -1,16 +1,17 @@
+from typing import Optional, DateTime
 from app.data.database.dbmodels import ArticleModel
 
 
 class Article:
 
-    price = None
-    start_time = None
-    category = None
-    currency = None
-    seller_nickname = None
-    _seller_id = None
-    _category_id = None
-    _currency_id = None
+    price:Optional[float] = None
+    start_time:Optional[DateTime] = None
+    category:Optional[str] = None
+    currency:Optional[str] = None
+    seller_nickname:Optional[str] = None
+    _seller_id:Optional[str] = None
+    _category_id:Optional[str] = None
+    _currency_id:Optional[str] = None
 
     def __init__(self, site, id):
         self.site = site

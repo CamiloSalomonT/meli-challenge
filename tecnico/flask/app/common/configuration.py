@@ -1,9 +1,10 @@
 import configparser
 
-CONFIG_FILE = 'config/config.ini'
+CONFIG_FILE = "config/config.ini"
 
 config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
+
 
 def listDomains():
     return config.sections()
