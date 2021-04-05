@@ -1,5 +1,5 @@
-import io
 import uuid
+import logging
 import threading
 
 from flask import request
@@ -20,13 +20,6 @@ import time
 import contextlib
 
 import app.control.pipeline as Pipeline
-
-
-@contextlib.contextmanager
-def time_consumption(test):
-    t0 = time.time()
-    yield
-    print("Time consumption for {}: {:.3f}s".format(test, time.time() - t0))
 
 
 @ns.route("")
@@ -58,35 +51,40 @@ class Challenge(Resource):
                 self.ch_th = None
             self.ch_th = threading.Thread(target=Pipeline.call_file_pipeline, args=[self.datapath])
             self.ch_th.start()
+            self.ch_th.join()
+            
             ret = "Launching the pipeline..."
         return {"message": ret}
 
     @ns.expect(upload_parser)
     def put(self):
         """Utiliza este servicio para ejecutar el pipeline sobre tu propio archivo. Son soportados los formatos jsonlines y csv... por el momento"""
-        with time_consumption("PUT"):
-            if self.ch_th and self.ch_th.is_alive():
-                return {"message": "Pipeline in execution!"}
-            else:
-                filename = uuid.uuid4()
-                chunk_size = conf.asInteger("IO", "chunk_size")
-                uploads_path = conf.asString("IO", "uploads_path")
-                filepath = uploads_path + str(filename)
-                with open(filepath, "w") as f:
-                    chunk_size = 128
-                    chunks = Reader.read_lines(request.stream, chunk_size)
+        if self.ch_th and self.ch_th.is_alive():
+            return {"message": "Pipeline in execution!"}
+        else:
+            filename = uuid.uuid4()
+            chunk_size = conf.asInteger("IO", "chunk_size")
+            uploads_path = conf.asString("IO", "uploads_path")
+            filepath = uploads_path + str(filename)
+            
+            with open(filepath, "w") as f:
+                chunk_size = 128
+                chunks = Reader.read_lines(request.stream, chunk_size)
 
-                    for dirty_chunk in chunks:
-                        chunk = self.clean_lines(dirty_chunk)
-                        if not (self.ch_th and self.ch_th.is_alive()):
-                            self.ch_th = threading.Thread(target=Pipeline.call_chunk_pipeline, args=[chunk])
-                            self.ch_th.start()
-                        else:
-                            for line in chunk:
-                                f.write(line + "\n")
+                for dirty_chunk in chunks:
+                    chunk = self.clean_lines(dirty_chunk)
+                    if not (self.ch_th and self.ch_th.is_alive()):
+                        self.ch_th = threading.Thread(target=Pipeline.call_chunk_pipeline, args=[chunk])
+                        self.ch_th.start()
+                    else:
+                        for line in chunk:
+                            f.write(line + "\n")
+
+            self.ch_th.join()
             self.ch_th = threading.Thread(target=Pipeline.call_file_pipeline, args=[filepath])
             self.ch_th.start()
-            return {"message": "Launching the pipeline..."}
+            self.ch_th.join()
+        return {"message": "Launching the pipeline..."}
 
     def clean_lines(self, lines):
         new_lines = []
